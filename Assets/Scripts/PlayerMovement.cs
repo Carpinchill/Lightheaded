@@ -23,32 +23,36 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         player = GetComponent<CharacterController>();
+        _originalSpeed = playerSpeed; // Inicializar la velocidad original aquí
     }
 
+    // En el método Update
     void Update()
     {
-        // Obtener el input de movimiento del jugador
-        horizontalMove = Input.GetAxis("Horizontal");
-        verticalMove = Input.GetAxis("Vertical");
-
-        _playerInput = new Vector3(horizontalMove, 0, verticalMove);
-        _playerInput = Vector3.ClampMagnitude(_playerInput, 1); // Limitar la magnitud para evitar movimientos rápidos
-
-        // Determinar la dirección en la que la cámara está mirando
-        CamDirection();
-        _movePlayer = _playerInput.x * _camRight + _playerInput.z * _camForward;
-
-        // Si el jugador se está moviendo
-        if (_movePlayer != Vector3.zero)
+        // Si el jugador no está inmovilizado
+        if (!_isImmobilized)
         {
-            // Calcular la rotación hacia la dirección de movimiento
-            Quaternion targetRotation = Quaternion.LookRotation(_movePlayer);
-            // Suavizar la rotación del jugador hacia esa dirección
-            player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
+            // Obtener el input de movimiento del jugador
+            horizontalMove = Input.GetAxis("Horizontal");
+            verticalMove = Input.GetAxis("Vertical");
 
-        // Mover al jugador en la dirección calculada
-        player.Move(playerSpeed * Time.deltaTime * _movePlayer);
+            _playerInput = new Vector3(horizontalMove, 0, verticalMove);
+            _playerInput = Vector3.ClampMagnitude(_playerInput, 1); // Limitar la magnitud para evitar movimientos rápidos
+
+            // Determinar la dirección en la que la cámara está mirando
+            CamDirection();
+            _movePlayer = _playerInput.x * _camRight + _playerInput.z * _camForward;
+
+            // Si el jugador se está moviendo, rotar hacia la dirección de movimiento
+            if (_movePlayer != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(_movePlayer);
+                player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            }
+
+            // Mover al jugador en la dirección calculada
+            player.Move(playerSpeed * Time.deltaTime * _movePlayer);
+        }
     }
 
     // Determinar la dirección en la que está mirando la cámara, ignorando la rotación en el eje Y
@@ -74,11 +78,19 @@ public class PlayerMovement : MonoBehaviour
 
     public void ReduceSpeed()
     {
-        playerSpeed = _originalSpeed / 2; // Reducir la velocidad a la mitad
+        // Solo reducir la velocidad si es igual a la original
+        if (playerSpeed == _originalSpeed)
+        {
+            playerSpeed /= 2; // Reducir la velocidad a la mitad
+        }
     }
 
     public void RestoreSpeed()
     {
-        playerSpeed = _originalSpeed; // Restaurar la velocidad original
+        // Solo restaurar si la velocidad ha sido reducida
+        if (playerSpeed != _originalSpeed)
+        {
+            playerSpeed = _originalSpeed; // Restaurar la velocidad original
+        }
     }
 }

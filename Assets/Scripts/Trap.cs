@@ -12,8 +12,7 @@ public class Trap : MonoBehaviour
         // Verificar si el objeto que colisiona es el jugador
         if (other.CompareTag("Player"))
         {
-            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
-            if (playerMovement != null)
+            if (other.TryGetComponent<PlayerMovement>(out var playerMovement))
             {
                 if (trapType == TrapType.Immobilize)
                 {
@@ -39,7 +38,7 @@ public class Trap : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        // Restablecer la velocidad cuando el jugador salga de la trampa
+        // Restablecer la velocidad cuando el jugador salga de la tramp
         if (other.CompareTag("Player"))
         {
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();

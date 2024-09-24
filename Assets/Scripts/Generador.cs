@@ -7,11 +7,13 @@ public class Generador : MonoBehaviour
     public float activationDistance = 2f; // Distancia para activar el generador
     private bool _isActive = false; // Para comprobar si el generador está activo
     private Transform playerTransform;
+    public GameObject sign;
 
     void Start()
     {
         // Buscar el jugador por su etiqueta
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        sign.SetActive(true);
     }
 
     void Update()
@@ -35,7 +37,7 @@ public class Generador : MonoBehaviour
         while (Input.GetKey(KeyCode.E) && holdTime < 4f)
         {
             holdTime += Time.deltaTime;
-            yield return null; // Esperar un fras
+            yield return null;
         }
 
         // Comprobar si se mantuvo durante 4 segundos
@@ -43,7 +45,7 @@ public class Generador : MonoBehaviour
         {
             _isActive = true;
             Debug.Log("Se activó el generador");
-            // Aquí puedes añadir la lógica para activar el generador
+            sign.SetActive(false);
         }
     }
 }
