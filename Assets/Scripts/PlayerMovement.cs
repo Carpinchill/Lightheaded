@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float horizontalMove;
     public float verticalMove;
     public CharacterController player;
-    private Vector3 movePlayer;
+    private Vector3 _movePlayer;
 
     private Vector3 _playerInput;
 
@@ -27,37 +27,44 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        // Obtener el input de movimiento del jugador
         horizontalMove = Input.GetAxis("Horizontal");
         verticalMove = Input.GetAxis("Vertical");
 
         _playerInput = new Vector3(horizontalMove, 0, verticalMove);
-        _playerInput = Vector3.ClampMagnitude(_playerInput, 1);
+        _playerInput = Vector3.ClampMagnitude(_playerInput, 1); // Limitar la magnitud para evitar movimientos rápidos
 
+        // Determinar la dirección en la que la cámara está mirando
         CamDirection();
-        movePlayer = _playerInput.x * _camRight + _playerInput.z * _camForward;
+        _movePlayer = _playerInput.x * _camRight + _playerInput.z * _camForward;
 
-        if (movePlayer != Vector3.zero)
+        // Si el jugador se está moviendo
+        if (_movePlayer != Vector3.zero)
         {
-            // Calcular la nueva rotación
-            Quaternion targetRotation = Quaternion.LookRotation(movePlayer);
-            // Suavizar la rotación
+            // Calcular la rotación hacia la dirección de movimiento
+            Quaternion targetRotation = Quaternion.LookRotation(_movePlayer);
+            // Suavizar la rotación del jugador hacia esa dirección
             player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
-        player.Move(playerSpeed * Time.deltaTime * movePlayer);
+        // Mover al jugador en la dirección calculada
+        player.Move(playerSpeed * Time.deltaTime * _movePlayer);
     }
 
+    // Determinar la dirección en la que está mirando la cámara, ignorando la rotación en el eje Y
     void CamDirection()
     {
         _camForward = mainCamera.transform.forward;
         _camRight = mainCamera.transform.right;
 
+        // Ignorar la rotación en el eje Y de la cámara
         _camForward.y = 0;
         _camRight.y = 0;
 
         _camForward = _camForward.normalized;
         _camRight = _camRight.normalized;
     }
+    
     public IEnumerator Immobilize(float duration)
     {
         _isImmobilized = true; // Inmovilizar al jugador
