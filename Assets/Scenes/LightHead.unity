@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -603,6 +603,87 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ceea8114ea1db484788ecdc03ec882fd, type: 3}
+--- !u!1 &268075020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 268075021}
+  m_Layer: 0
+  m_Name: Bengala
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &268075021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268075020}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 322862069}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &322862068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 322862069}
+  - component: {fileID: 322862070}
+  m_Layer: 0
+  m_Name: WeaponManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &322862069
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322862068}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1280236307}
+  - {fileID: 268075021}
+  m_Father: {fileID: 1738904440}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &322862070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322862068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4873a26d4e0a1804fa0f2255eff935b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeapon: 0
+  unarmed: {fileID: 1738904434}
+  flashlight: {fileID: 1280236306}
+  futureWeapon: {fileID: 268075020}
 --- !u!1 &560560841
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,6 +998,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &752972414 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9085537086053278538, guid: dde4ad11e7d16e944bbd6c4d7174a4fc, type: 3}
+  m_PrefabInstance: {fileID: 947005116}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &752972418
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752972414}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.32603988, y: 1.9055691, z: 0.3466222}
+  m_Center: {x: 0.0051059723, y: 0.95278454, z: 0.015611696}
 --- !u!1001 &826036634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1215,7 +1322,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9085537086053278538, guid: dde4ad11e7d16e944bbd6c4d7174a4fc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 752972418}
   m_SourcePrefab: {fileID: 100100000, guid: dde4ad11e7d16e944bbd6c4d7174a4fc, type: 3}
 --- !u!1 &956128840
 GameObject:
@@ -1382,7 +1492,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 68.9
+  field of view: 40.133667
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1437,6 +1547,7 @@ MonoBehaviour:
   lerpValue: 1
   zoomSpeed: 0.3
   Aim: {fileID: 1446768029}
+  isAiming: 0
 --- !u!1 &986349327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,7 +1689,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 986349327}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
@@ -1600,7 +1711,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 3a1e2c3b141dc6d4496dd144629351ac, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 599189f18a92cfa4484f320b00ba1576, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &991062819
 GameObject:
@@ -1889,7 +2000,7 @@ GameObject:
   - component: {fileID: 1280236311}
   - component: {fileID: 1280236310}
   - component: {fileID: 1280236309}
-  - component: {fileID: 1280236308}
+  - component: {fileID: 1280236312}
   m_Layer: 0
   m_Name: Lantern
   m_TagString: Untagged
@@ -1905,31 +2016,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280236306}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.27, y: 0, z: 0.31}
-  m_LocalScale: {x: 0.09, y: 0.24552612, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.27000004, y: 0, z: 0.31000003}
+  m_LocalScale: {x: 0.09000001, y: 0.24552612, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1738904440}
+  m_Father: {fileID: 322862069}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1280236308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1280236306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 865bcf7da84914f46900cc1a3eb196eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRange: 10
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  rays: 10
-  angle: 30
 --- !u!65 &1280236309
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2001,6 +2094,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280236306}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1280236312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280236306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 675146e2b514a014292abbefabb3e6d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 10
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  rays: 10
+  angle: 30
+  maxLightUseTime: 8
+  lightCooldownFull: 5
+  lightCooldownPartial: 3
+  weapons: {fileID: 322862070}
+  cameraManager: {fileID: 963194229}
 --- !u!1 &1446768028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2597,7 +2713,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 32
   m_CollisionDetection: 0
@@ -2689,7 +2805,7 @@ Transform:
   m_Children:
   - {fileID: 963194228}
   - {fileID: 1695876279}
-  - {fileID: 1280236307}
+  - {fileID: 322862069}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -10.28, z: 0}
 --- !u!114 &1738904441
@@ -2706,7 +2822,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalMove: 0
   verticalMove: 0
-  player: {fileID: 1738904442}
+  playerRb: {fileID: 1738904436}
+  cameraManager: {fileID: 963194229}
   mainCamera: {fileID: 963194227}
   playerSpeed: 5
   rotationSpeed: 4
@@ -2750,6 +2867,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 963194227}
   rayDistance: 100
+  weapons: {fileID: 322862070}
+  cameraManager: {fileID: 963194229}
 --- !u!1 &1785558370
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaycastManager : MonoBehaviour
+public class UnarmedInteract : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float rayDistance = 5f;
+    public Weapons weapons;
+    public CameraManager cameraManager;
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // Al hacer clic izquierdo
+        if (Input.GetMouseButtonDown(0) && weapons.currentWeapon == Weapons.WeaponState.Unarmed && cameraManager.isAiming)
         {
             FireLightShard();
         }
@@ -29,7 +31,10 @@ public class RaycastManager : MonoBehaviour
             {
                 pared.Desaparecer(); // Llama al método de la pared para hacerla desaparecer
             }
+            else
+            {
+                Debug.Log("Golpeaste a: " + hit.collider.name);
+            }
         }
     }
 }
-

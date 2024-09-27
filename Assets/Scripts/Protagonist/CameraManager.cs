@@ -20,7 +20,7 @@ public class CameraManager : MonoBehaviour
     private Vector3 _currentOffset;         // Offset actual de la cámara
     private float _yaw = 0f;                // Rotación horizontal
     private float _pitch = 0f;              // Rotación vertical
-    private bool _isAiming = false;         // Indicador de si está apuntando
+    public bool isAiming = false;         // Indicador de si está apuntando
     
     private void Start()
     {
@@ -47,13 +47,13 @@ public class CameraManager : MonoBehaviour
         // Alternar entre el offset de zoom y el normal al hacer clic derecho
         if (Input.GetMouseButton(1)) // Clic derecho
         {
-            _isAiming = true;
+            isAiming = true;
             _currentOffset = Vector3.Lerp(_currentOffset, aimOffset, zoomSpeed);
             Aim.enabled = true;
         }
         else
         {
-            _isAiming = false;
+            isAiming = false;
             _currentOffset = Vector3.Lerp(_currentOffset, normalOffset, zoomSpeed);
             Aim.enabled = false;
         }
@@ -66,24 +66,5 @@ public class CameraManager : MonoBehaviour
         
         // Aplicar la rotación calculada
         transform.SetPositionAndRotation(Vector3.Lerp(transform.position, desiredPosition, lerpValue), rotation);
-
-        // Detectar disparo con clic izquierdo solo si está apuntando
-        if (Input.GetMouseButtonDown(0) && _isAiming)
-        {
-            FireLightShard();
-        }
-    }
-
-    // Método para disparar un raycast desde el centro de la pantalla
-    private void FireLightShard()
-    {
-        // Crear un ray desde el centro de la pantalla
-        Ray ray = mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-
-        // Verificar si el raycast golpea algo
-        if (Physics.Raycast(ray, out RaycastHit hit))
-        {
-            Debug.Log("Golpeaste a: " + hit.collider.name);
-        }
     }
 }
