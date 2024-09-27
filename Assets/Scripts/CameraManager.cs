@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class CameraManager : MonoBehaviour
 {
     public Transform target;               // Referencia al jugador
     public Vector3 normalOffset;           // Offset normal de la cámara
