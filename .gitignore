@@ -70,3 +70,6 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Import/Bear_Trap/animations/Bear_Trap.controller
+Assets/Import/Neighbor_bearTrap/animations/Neighbor_bearTrap.controller
+Assets/Import/Bear_Trap/meshes/Cylinder002__0_0_0.asset

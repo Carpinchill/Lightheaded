@@ -1,5 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD
 --- !u!1102 &-2479345797005855517
 AnimatorState:
   serializedVersion: 6
@@ -26,6 +27,8 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+=======
+>>>>>>> 4de5ab9fdab66a590208a432ff3d696ba242fdaf
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -35,6 +38,7 @@ AnimatorController:
   m_Name: Bear_Trap
   serializedVersion: 5
   m_AnimatorParameters: []
+<<<<<<< HEAD
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -70,3 +74,6 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -2479345797005855517}
+=======
+  m_AnimatorLayers: []
+>>>>>>> 4de5ab9fdab66a590208a432ff3d696ba242fdaf
