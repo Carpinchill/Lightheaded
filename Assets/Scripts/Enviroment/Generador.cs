@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class Generador : MonoBehaviour
 {
-    public float activationDistance = 2f; // Distancia para activar el generador
-    private bool _isActive = false; // Para comprobar si el generador está activo
+    public float activationDistance = 2f; //distancia para activar el generador
+    private bool _isActive = false; //para comprobar si el generador está activo
     private Transform playerTransform;
     public GameObject sign;
 
     void Start()
     {
-        // Buscar el jugador por su etiqueta
+        //buscar el jugador por su etiqueta
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         sign.SetActive(true);
     }
 
     void Update()
     {
-        // Comprobar si el jugador está cerca
+        //comprobar si el jugador está cerca
         if (Vector3.Distance(transform.position, playerTransform.position) < activationDistance && !_isActive)
         {
-            // Comprobar si se presiona la tecla "E"
+            //comprobar si se presiona la tecla "E"
             if (Input.GetKey(KeyCode.E))
             {
                 StartCoroutine(ActivateGenerator());
@@ -31,7 +31,7 @@ public class Generador : MonoBehaviour
 
     private IEnumerator ActivateGenerator()
     {
-        // Esperar 4 segundos mientras se mantiene "E"
+        //esperar 4 segundos mientras se mantiene "E"
         float holdTime = 0f;
 
         while (Input.GetKey(KeyCode.E) && holdTime < 4f)
@@ -40,7 +40,7 @@ public class Generador : MonoBehaviour
             yield return null;
         }
 
-        // Comprobar si se mantuvo durante 4 segundos
+        //comprobar si se mantuvo durante 4 segundos
         if (holdTime >= 4f)
         {
             _isActive = true;

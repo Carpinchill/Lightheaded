@@ -9,14 +9,14 @@ public class Trap : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Verificar si el objeto que colisiona es el jugador
+        //verificar si el objeto que colisiona es el jugador
         if (other.CompareTag("Player"))
         {
             if (other.TryGetComponent<PlayerMovement>(out var playerMovement))
             {
                 if (trapType == TrapType.Immobilize)
                 {
-                    // Iniciar la inmovilización
+                    //iniciar la inmovilización
                     StartCoroutine(playerMovement.Immobilize(1.5f));
                 }
             }
@@ -25,26 +25,26 @@ public class Trap : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        // Verificar si el objeto que colisiona es el jugador
+        //verificar si el objeto que colisiona es el jugador
         if (other.CompareTag("Player"))
         {
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
             if (playerMovement != null && trapType == TrapType.SlowDown)
             {
-                playerMovement.ReduceSpeed(); // Reducir la velocidad mientras está en la trampa
+                playerMovement.ReduceSpeed(); //reducir la velocidad mientras está en la trampa
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        // Restablecer la velocidad cuando el jugador salga de la tramp
+        //restablecer la velocidad cuando el jugador salga de la tramp
         if (other.CompareTag("Player"))
         {
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
             if (playerMovement != null && trapType == TrapType.SlowDown)
             {
-                playerMovement.RestoreSpeed(); // Restaurar la velocidad original
+                playerMovement.RestoreSpeed(); //restaurar la velocidad original
             }
         }
     }

@@ -8,8 +8,8 @@ public class Weapons : MonoBehaviour
     public WeaponState currentWeapon = WeaponState.Unarmed;
 
     public GameObject unarmed;
-    public GameObject flashlight; // Referencia a la linterna
-    public GameObject futureWeapon; // Referencia para la futura arma
+    public GameObject flashlight; //referencia a la linterna
+    public GameObject futureWeapon; //referencia para la futura arma
 
     void Start()
     {

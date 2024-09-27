@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class FlashLight : MonoBehaviour
 {
-    public float detectionRange = 10f; // Rango de detección de la linterna
-    public LayerMask enemyLayer; // Capa del enemigo
-    public int rays = 10; // Cantidad de rayos para el cono de luz
-    public float angle = 30f; // Ángulo del cono de luz
+    public float detectionRange = 10f; //rango de detección de la linterna
+    public LayerMask enemyLayer; //capa del enemigo
+    public int rays = 10; //cantidad de rayos para el cono de luz
+    public float angle = 30f; //angulo del cono de luz
 
 
-    public float maxUsageTime = 3f;  // Tiempo máximo de uso en segundos
-    private float _currentUsageTime;  // Tiempo actual de uso
-    public float cooldownTime = 5f;  // Tiempo de cooldown
-    private float _currentCooldownTime;  // Tiempo actual de cooldown
+    public float maxUsageTime = 3f;  //tiempo máximo de uso en segundos
+    private float _currentUsageTime;  //tiempo actual de uso
+    public float cooldownTime = 5f;  //tiempo de cooldown
+    private float _currentCooldownTime;  //tiempo actual de cooldown
 
     private bool canUseFlashlight = true;
     public Weapons weapons;
@@ -27,7 +27,7 @@ public class FlashLight : MonoBehaviour
             if (_currentCooldownTime <= 0)
             {
                 canUseFlashlight = true;
-                _currentUsageTime = maxUsageTime;  // Restaurar tiempo de uso
+                _currentUsageTime = maxUsageTime;  //restaurar tiempo de uso
             }
         }
         if (canUseFlashlight && cameraManager.isAiming && weapons.currentWeapon == Weapons.WeaponState.Flashlight && Input.GetMouseButton(0))
@@ -43,21 +43,21 @@ public class FlashLight : MonoBehaviour
         if (_currentUsageTime <= 0)
         {
             canUseFlashlight = false;
-            _currentCooldownTime = cooldownTime;  // Iniciar cooldown
+            _currentCooldownTime = cooldownTime;  //iniciar cooldown
         }
     }
     void DetectEnemyInCone()
     {
-        // Lanzar raycasts en diferentes ángulos dentro del cono
+        //lanzar raycasts en diferentes ángulos dentro del cono
         for (int i = 0; i < rays; i++)
         {
-            // Calculamos el ángulo del rayo en el cono de luz
+            //calculamos el ángulo del rayo en el cono de luz
             float currentAngle = Mathf.Lerp(-angle / 2, angle / 2, (float)i / (rays - 1));
-            Vector3 direction = Quaternion.Euler(0, currentAngle, 0) * transform.forward; // Gira el rayo en el eje Y
+            Vector3 direction = Quaternion.Euler(0, currentAngle, 0) * transform.forward; //gira el rayo en el eje Y
 
             if (Physics.Raycast(transform.position, direction, out RaycastHit hit, detectionRange, 1 << LayerMask.NameToLayer("Enemy")))
             {
-                // Verificar si golpeamos al enemigo
+                //verificar si golpeamos al enemigo
                 if (hit.collider.CompareTag("Enemy"))
                 {
                     if (hit.collider.TryGetComponent<Enemy>(out var enemyScript))
@@ -67,7 +67,7 @@ public class FlashLight : MonoBehaviour
                 }
             }
 
-            // Para visualizar el raycast en la ventana de escena
+            //para visualizar el raycast en la ventana de escena
             Debug.DrawRay(transform.position, direction * detectionRange, Color.yellow);
         }
     }

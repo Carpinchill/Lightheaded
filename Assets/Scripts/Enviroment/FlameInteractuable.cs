@@ -7,7 +7,7 @@ public class FlameInteractuable : MonoBehaviour
     public GameObject DestroyableWall;
     public void Desaparecer()
     {
-        DestroyableWall.SetActive(false); // Desactiva la pared
+        DestroyableWall.SetActive(false); //desactiva la pared
         this.gameObject.SetActive(false);
     }
 }

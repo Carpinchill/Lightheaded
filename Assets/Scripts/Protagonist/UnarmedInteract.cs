@@ -17,19 +17,19 @@ public class UnarmedInteract : MonoBehaviour
         }
     }
 
-    // Método para disparar un raycast desde el centro de la pantalla
+    //método para disparar un raycast desde el centro de la pantalla
     private void FireLightShard()
     {
-        // Crear un ray desde el centro de la pantalla
+        //crear un ray desde el centro de la pantalla
         Ray ray = mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
 
-        // Verificar si el raycast golpea algo
+        //verificar si el raycast golpea algo
         if (Physics.Raycast(ray, out RaycastHit hit, rayDistance))
         {
-            // Intentar obtener el script ParedController
+            //intentar obtener el script ParedController
             if (hit.collider.TryGetComponent<FlameInteractuable>(out var pared))
             {
-                pared.Desaparecer(); // Llama al método de la pared para hacerla desaparecer
+                pared.Desaparecer(); //llama al método de la pared para hacerla desaparecer
             }
             else
             {
