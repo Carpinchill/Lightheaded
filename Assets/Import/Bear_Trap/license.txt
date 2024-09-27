@@ -1,0 +1,11 @@
+Model Information:
+* title:	Bear Trap
+* source:	https://sketchfab.com/3d-models/bear-trap-31a9de49370648cf999dac24962d7c81
+* author:	Dillon Barba (https://sketchfab.com/dillonbarba)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Bear Trap" (https://sketchfab.com/3d-models/bear-trap-31a9de49370648cf999dac24962d7c81) by Dillon Barba (https://sketchfab.com/dillonbarba) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
