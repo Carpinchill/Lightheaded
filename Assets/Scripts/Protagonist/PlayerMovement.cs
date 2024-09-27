@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Animator anim;
     public float horizontalMove;
     public float verticalMove;
     public Rigidbody playerRb;  // Rigidbody del jugador
@@ -26,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();  // Obtener el Rigidbody del jugador
         playerRb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;  // Evitar inclinación o rotación en ejes X y Z
         _originalSpeed = playerSpeed;  // Guardar la velocidad original
+
+        anim = GetComponent<Animator>();  // Obtener el Animator
     }
 
     void Update()
@@ -43,10 +46,14 @@ public class PlayerMovement : MonoBehaviour
             CamDirection();
             _movePlayer = _playerInput.x * _camRight + _playerInput.z * _camForward;
 
+            // Actualizar los parámetros de animación
+            anim.SetFloat("VelX", horizontalMove);
+            anim.SetFloat("VelY", verticalMove);
+
             // Aplicar rotación hacia la dirección de movimiento solo si hay movimiento y no está apuntando
             if (_movePlayer != Vector3.zero)
             {
-                RotatePlayer(_movePlayer);
+                RotatePlayer(_movePlayer);  // Esta rotación ya afecta al GameObject y, por tanto, al Animator.
             }
         }
     }
@@ -84,6 +91,8 @@ public class PlayerMovement : MonoBehaviour
 
         // Aplicar la rotación suavizada
         playerRb.rotation = Quaternion.Slerp(playerRb.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        // Si el Animator está en el mismo GameObject que el Rigidbody, este girará junto con el personaje.
     }
 
     // Determinar la dirección en la que está mirando la cámara, ignorando la rotación en el eje Y

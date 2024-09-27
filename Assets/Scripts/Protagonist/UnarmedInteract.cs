@@ -11,7 +11,7 @@ public class UnarmedInteract : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && weapons.currentWeapon == Weapons.WeaponState.Unarmed && cameraManager.isAiming)
+        if (weapons.currentWeapon == Weapons.WeaponState.Unarmed && cameraManager.isAiming && Input.GetMouseButtonDown(0))
         {
             FireLightShard();
         }

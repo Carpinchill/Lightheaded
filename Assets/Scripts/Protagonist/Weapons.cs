@@ -11,6 +11,11 @@ public class Weapons : MonoBehaviour
     public GameObject flashlight; // Referencia a la linterna
     public GameObject futureWeapon; // Referencia para la futura arma
 
+    void Start()
+    {
+         flashlight.SetActive(false);  
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -33,7 +38,5 @@ public class Weapons : MonoBehaviour
     void EquipWeapon()
     {
         flashlight.SetActive(currentWeapon == WeaponState.Flashlight);
-        futureWeapon.SetActive(currentWeapon == WeaponState.FutureWeapon);
-        // Aquí podrías poner la lógica para "desarmado"
     }
 }

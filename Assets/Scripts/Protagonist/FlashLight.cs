@@ -30,7 +30,7 @@ public class FlashLight : MonoBehaviour
                 _currentUsageTime = maxUsageTime;  // Restaurar tiempo de uso
             }
         }
-        if (cameraManager.isAiming && weapons.currentWeapon == Weapons.WeaponState.Flashlight && Input.GetMouseButton(0))
+        if (canUseFlashlight && cameraManager.isAiming && weapons.currentWeapon == Weapons.WeaponState.Flashlight && Input.GetMouseButton(0))
         {
             DetectEnemyInCone();
             UseFlashlight();
@@ -55,8 +55,7 @@ public class FlashLight : MonoBehaviour
             float currentAngle = Mathf.Lerp(-angle / 2, angle / 2, (float)i / (rays - 1));
             Vector3 direction = Quaternion.Euler(0, currentAngle, 0) * transform.forward; // Gira el rayo en el eje Y
 
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, direction, out hit, detectionRange, enemyLayer))
+            if (Physics.Raycast(transform.position, direction, out RaycastHit hit, detectionRange, 1 << LayerMask.NameToLayer("Enemy")))
             {
                 // Verificar si golpeamos al enemigo
                 if (hit.collider.CompareTag("Enemy"))
