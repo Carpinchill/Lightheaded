@@ -6,18 +6,22 @@ public class Weapons : MonoBehaviour
 {
     public enum WeaponState { Unarmed, Flashlight, FutureWeapon }
     public WeaponState currentWeapon = WeaponState.Unarmed;
-
     public GameObject unarmed;
-    public GameObject flashlight; //referencia a la linterna
-    public GameObject futureWeapon; //referencia para la futura arma
+    public GameObject flashlight; // referencia a la linterna
+    public GameObject futureWeapon; // referencia para la futura arma
+
+    private PlayerMovement playerMovement; // Referencia al PlayerMovement
+    public FlashLight flashLightMan; // Referencia al controlador de la linterna
 
     void Start()
     {
-         flashlight.SetActive(false);  
+        flashlight.SetActive(false);
+        playerMovement = GetComponent<PlayerMovement>(); // Obtener la referencia al PlayerMovement
     }
 
     void Update()
     {
+        // Cambiar el arma según la tecla presionada
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentWeapon = WeaponState.Unarmed;
@@ -35,8 +39,11 @@ public class Weapons : MonoBehaviour
         }
     }
 
+    // Método para activar el arma según el estado
     void EquipWeapon()
     {
         flashlight.SetActive(currentWeapon == WeaponState.Flashlight);
+        futureWeapon.SetActive(currentWeapon == WeaponState.FutureWeapon);
+        unarmed.SetActive(currentWeapon == WeaponState.Unarmed);
     }
 }

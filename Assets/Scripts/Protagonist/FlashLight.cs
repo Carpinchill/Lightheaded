@@ -4,70 +4,88 @@ using UnityEngine;
 
 public class FlashLight : MonoBehaviour
 {
-    public float detectionRange = 10f; //rango de detección de la linterna
-    public LayerMask enemyLayer; //capa del enemigo
-    public int rays = 10; //cantidad de rayos para el cono de luz
-    public float angle = 30f; //angulo del cono de luz
+    public float detectionRange = 10f; // Rango de detección de la linterna
+    public int rays = 10; // Cantidad de rayos para el cono de luz
+    public float angle = 30f; // Ángulo del cono de luz
+    public float shineConsumptionRate; // Consumo de Shine por segundo
+    public LightResource lightResource; // Referencia al script de LightResource
+    public Weapons weapons; // Referencia al script de Weapons
+    public CameraManager cameraManager; // Referencia al script de CameraManager
+    public Light flashLightLight;
 
+    private bool canUseFlashlight = true; // Determina si la linterna puede ser usada
+    private float cooldownTime = 5f; // Tiempo de cooldown
+    private float currentCooldownTime; // Tiempo actual de cooldown
 
-    public float maxUsageTime = 3f;  //tiempo máximo de uso en segundos
-    private float _currentUsageTime;  //tiempo actual de uso
-    public float cooldownTime = 5f;  //tiempo de cooldown
-    private float _currentCooldownTime;  //tiempo actual de cooldown
-
-    private bool canUseFlashlight = true;
-    public Weapons weapons;
-    public CameraManager cameraManager;
-
+    private void Start()
+    {
+        flashLightLight.enabled = false;
+    }
     void Update()
     {
-        if (!canUseFlashlight)
+        // Control de cooldown
+        if (currentCooldownTime > 0)
         {
-            _currentCooldownTime -= Time.deltaTime;
-            if (_currentCooldownTime <= 0)
+            currentCooldownTime -= Time.deltaTime; // Reducir el tiempo de cooldown
+            return; // Si está en cooldown, no hacemos nada más
+        }
+
+        // Revisar si el jugador tiene la linterna equipada y está apuntando
+        if (weapons.currentWeapon == Weapons.WeaponState.Flashlight && cameraManager.isAiming)
+        {
+            if (Input.GetMouseButton(0)) // Si se está presionando el clic izquierdo
             {
-                canUseFlashlight = true;
-                _currentUsageTime = maxUsageTime;  //restaurar tiempo de uso
+                // Solo activar la linterna si hay suficiente Shine
+                if (lightResource.GetCurrentShine() >= shineConsumptionRate * Time.deltaTime)
+                {
+                    flashLightLight.enabled = true; // Encender la linterna
+                    DetectEnemyInCone(); // Detectar enemigos en el cono de luz
+                    lightResource.UseShine(shineConsumptionRate * Time.deltaTime); // Consumir Shine
+                }
+                else
+                {
+                    flashLightLight.enabled = false; // Apagar la linterna si no hay suficiente Shine
+                    canUseFlashlight = false; // Desactivamos la linterna
+                }
+            }
+            else
+            {
+                flashLightLight.enabled = false; // Apagar la linterna si no se está presionando el clic
+                canUseFlashlight = true; // Restablecer la posibilidad de usarla
             }
         }
-        if (canUseFlashlight && cameraManager.isAiming && weapons.currentWeapon == Weapons.WeaponState.Flashlight && Input.GetMouseButton(0))
+        else
         {
-            DetectEnemyInCone();
-            UseFlashlight();
+            flashLightLight.enabled = false; // Apagar la linterna si no está equipada o no está apuntando
+            canUseFlashlight = true; // Restablecer la posibilidad de usarla
+        }
+
+        // Si la linterna se apaga por falta de Shine, reiniciamos el cooldown
+        if (!canUseFlashlight && lightResource.GetCurrentShine() >= shineConsumptionRate)
+        {
+            canUseFlashlight = true; // Restauramos el uso de la linterna
+            currentCooldownTime = cooldownTime; // Iniciamos el cooldown
         }
     }
 
-    void UseFlashlight()
-    {
-        _currentUsageTime -= Time.deltaTime;
-        if (_currentUsageTime <= 0)
-        {
-            canUseFlashlight = false;
-            _currentCooldownTime = cooldownTime;  //iniciar cooldown
-        }
-    }
     void DetectEnemyInCone()
     {
-        //lanzar raycasts en diferentes ángulos dentro del cono
         for (int i = 0; i < rays; i++)
         {
-            //calculamos el ángulo del rayo en el cono de luz
             float currentAngle = Mathf.Lerp(-angle / 2, angle / 2, (float)i / (rays - 1));
-            Vector3 direction = Quaternion.Euler(0, currentAngle, 0) * transform.forward; //gira el rayo en el eje Y
+            Vector3 direction = Quaternion.Euler(0, currentAngle, 0) * transform.forward;
 
             if (Physics.Raycast(transform.position, direction, out RaycastHit hit, detectionRange, 1 << LayerMask.NameToLayer("Enemy")))
             {
-                //verificar si golpeamos al enemigo
                 if (hit.collider.CompareTag("Enemy"))
                 {
                     if (hit.collider.TryGetComponent<Enemy>(out var enemyScript))
                     {
-                        enemyScript.FleeFromLight(transform.position);
+                        enemyScript.FleeFromLight(transform.position); // El enemigo huye de la luz
                     }
                 }
             }
 
-            //para visualizar el raycast en la ventana de escena
             Debug.DrawRay(transform.position, direction * detectionRange, Color.yellow);
         }
     }

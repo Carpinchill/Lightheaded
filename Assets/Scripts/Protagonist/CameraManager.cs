@@ -15,13 +15,13 @@ public class CameraManager : MonoBehaviour
     [Range(0, 1)] public float lerpValue = 0.1f; //valor de interpolación para suavizar el movimiento
     public float zoomSpeed = 0.1f;         //velocidad de cambio de zoom
     public Image Aim;
-   
+
 
     private Vector3 _currentOffset;         //offset actual de la cámara
     private float _yaw = 0f;                //rotación horizontal
     private float _pitch = 0f;              //rotación vertical
     public bool isAiming = false;         //indicador de si está apuntando
-    
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked; //bloquear el cursor en el centro de la pantalla
@@ -63,7 +63,7 @@ public class CameraManager : MonoBehaviour
 
         //calcular la nueva posición deseada de la cámara
         Vector3 desiredPosition = target.position + rotation * _currentOffset;
-        
+
         //aplicar la rotación calculada
         transform.SetPositionAndRotation(Vector3.Lerp(transform.position, desiredPosition, lerpValue), rotation);
     }
