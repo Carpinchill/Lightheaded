@@ -25,13 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public LightResource lightResource; // Referencia al script LightResource
 
     // Para controlar la recarga
-    private bool _isChargingShine = false;
-
-    // Sistema de Stamina
-    public float maxStamina = 100f;
-    private float currentStamina;
-    public float staminaConsumptionRate = 10f; // Cuánto consume por segundo corriendo
-    public float staminaRecoveryRate = 5f; // Cuánto se recupera por segundo cuando no corre
+    public bool isChargingShine = false;
 
     void Start()
     {
@@ -40,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
         _originalSpeed = playerSpeed;
         lightResource = GetComponent<LightResource>();
         anim = GetComponent<Animator>();
-        currentStamina = maxStamina;
     }
 
     void Update()
@@ -62,30 +55,23 @@ public class PlayerMovement : MonoBehaviour
             anim.SetFloat("VelY", verticalMove);
 
             // Verificar si está presionando Shift para correr
-            bool isRunning = Input.GetKey(KeyCode.LeftShift) && currentStamina > 0f;
+            bool isRunning = Input.GetKey(KeyCode.LeftShift);
 
             if (isRunning)
             {
                 playerSpeed = _originalSpeed * 2f;  // Aumenta la velocidad al correr
-                currentStamina -= staminaConsumptionRate * Time.deltaTime;  // Consume stamina
             }
             else
             {
                 playerSpeed = _originalSpeed;  // Restaurar velocidad normal
-                if (currentStamina < maxStamina)
-                {
-                    currentStamina += staminaRecoveryRate * Time.deltaTime;  // Recupera stamina
-                }
             }
 
-            // Evitar que la stamina baje de 0
-            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
-                          
-            if (Input.GetKey(KeyCode.C) && lightResource.GetCurrentShine() < 1f && !_isChargingShine)
+            // Iniciar o detener la carga de luz
+            if (Input.GetKey(KeyCode.C) && !isRunning && !isChargingShine)
             {
                 StartChargingShine();
             }
-            else if (Input.GetKeyUp(KeyCode.C))
+            else if (Input.GetKeyUp(KeyCode.C) || isRunning)
             {
                 StopChargingShine();
             }
@@ -103,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!_isImmobilized && !_isChargingShine)
+        if (!_isImmobilized && !isChargingShine)
         {
             Vector3 movement = playerSpeed * Time.deltaTime * _movePlayer;
             playerRb.MovePosition(playerRb.position + movement);
@@ -174,14 +160,16 @@ public class PlayerMovement : MonoBehaviour
     private void StartChargingShine()
     {
         ReduceSpeed();
-        _isChargingShine = true;
+        isChargingShine = true;
+
+        // Se inicia la recarga sin importar si el jugador tiene suficiente luz
         lightResource.StartRegen();
     }
 
     private void StopChargingShine()
     {
         RestoreSpeed();
-        _isChargingShine = false;
+        isChargingShine = false;
         lightResource.StopRegen();
     }
 

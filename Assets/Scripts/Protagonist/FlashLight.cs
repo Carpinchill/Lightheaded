@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FlashLight : MonoBehaviour
-{
-    public float detectionRange = 10f; // Rango de detección de la linterna
-    public int rays = 10; // Cantidad de rayos para el cono de luz
-    public float angle = 30f; // Ángulo del cono de luz
+{   
     public float shineConsumptionRate; // Consumo de Shine por segundo
     public LightResource lightResource; // Referencia al script de LightResource
     public Weapons weapons; // Referencia al script de Weapons
     public CameraManager cameraManager; // Referencia al script de CameraManager
     public Light flashLightLight;
+    public Collider detectionCone;
+    public PlayerMovement playerMovement;
 
     private bool canUseFlashlight = true; // Determina si la linterna puede ser usada
     private float cooldownTime = 5f; // Tiempo de cooldown
@@ -20,6 +19,7 @@ public class FlashLight : MonoBehaviour
     private void Start()
     {
         flashLightLight.enabled = false;
+        detectionCone.enabled = false;
     }
     void Update()
     {
@@ -33,19 +33,19 @@ public class FlashLight : MonoBehaviour
         // Revisar si el jugador tiene la linterna equipada y está apuntando
         if (weapons.currentWeapon == Weapons.WeaponState.Flashlight && cameraManager.isAiming)
         {
-            if (Input.GetMouseButton(0)) // Si se está presionando el clic izquierdo
+            if (Input.GetMouseButton(0) && !playerMovement.isChargingShine) // Si se está presionando el clic izquierdo
             {
                 // Solo activar la linterna si hay suficiente Shine
-                if (lightResource.GetCurrentShine() >= shineConsumptionRate * Time.deltaTime)
+                if (Input.GetMouseButton(0) && lightResource.GetCurrentShine() >= shineConsumptionRate * Time.deltaTime)
                 {
-                    flashLightLight.enabled = true; // Encender la linterna
-                    DetectEnemyInCone(); // Detectar enemigos en el cono de luz
-                    lightResource.UseShine(shineConsumptionRate * Time.deltaTime); // Consumir Shine
+                    flashLightLight.enabled = true;
+                    detectionCone.enabled = true; // Activa el trigger solo si la linterna está encendida
+                    lightResource.UseShine(shineConsumptionRate * Time.deltaTime);
                 }
                 else
                 {
-                    flashLightLight.enabled = false; // Apagar la linterna si no hay suficiente Shine
-                    canUseFlashlight = false; // Desactivamos la linterna
+                    flashLightLight.enabled = false;
+                    detectionCone.enabled = false; // Desactiva el trigger
                 }
             }
             else
@@ -57,6 +57,7 @@ public class FlashLight : MonoBehaviour
         else
         {
             flashLightLight.enabled = false; // Apagar la linterna si no está equipada o no está apuntando
+            detectionCone.enabled = false;
             canUseFlashlight = true; // Restablecer la posibilidad de usarla
         }
 
@@ -68,25 +69,27 @@ public class FlashLight : MonoBehaviour
         }
     }
 
-    void DetectEnemyInCone()
+    private void OnTriggerEnter(Collider other)
     {
-        for (int i = 0; i < rays; i++)
+        if (other.CompareTag("Enemy"))
         {
-            float currentAngle = Mathf.Lerp(-angle / 2, angle / 2, (float)i / (rays - 1));
-            Vector3 direction = Quaternion.Euler(0, currentAngle, 0) * transform.forward;
-
-            if (Physics.Raycast(transform.position, direction, out RaycastHit hit, detectionRange, 1 << LayerMask.NameToLayer("Enemy")))
+            if (other.TryGetComponent<Enemy>(out var enemyScript))
             {
-                if (hit.collider.CompareTag("Enemy"))
-                {
-                    if (hit.collider.TryGetComponent<Enemy>(out var enemyScript))
-                    {
-                        enemyScript.FleeFromLight(transform.position); // El enemigo huye de la luz
-                    }
-                }
+                enemyScript.FleeFromLight(transform.position);
             }
+        }
+    }
 
-            Debug.DrawRay(transform.position, direction * detectionRange, Color.yellow);
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            // Asegúrate de que el objeto en el trigger es un enemigo
+            if (other.TryGetComponent<Enemy>(out var enemyScript))
+            {
+                // El enemigo deja de huir cuando ya no está en el área de la luz
+                enemyScript.ReevaluatePosition();
+            }
         }
     }
 }
