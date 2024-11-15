@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LightHead.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Derrota.unity
+    guid: 6f19cfa087ab0264bb1a51bf20c80f27
   m_configObjects: {}

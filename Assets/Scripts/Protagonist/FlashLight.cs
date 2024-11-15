@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FlashLight : MonoBehaviour
-{   
+{
+    public float detectionRange = 10f; // Rango de detección de la linterna
+    public int rays = 10; // Cantidad de rayos para el cono de luz
+    public float angle = 30f; // Ángulo del cono de luz
     public float shineConsumptionRate; // Consumo de Shine por segundo
     public LightResource lightResource; // Referencia al script de LightResource
     public Weapons weapons; // Referencia al script de Weapons
     public CameraManager cameraManager; // Referencia al script de CameraManager
     public Light flashLightLight;
-    public Collider detectionCone;
-    public PlayerMovement playerMovement;
+    public ParticleSystem flashLightParticles; // Sistema de partículas de la linterna
 
     private bool canUseFlashlight = true; // Determina si la linterna puede ser usada
     private float cooldownTime = 5f; // Tiempo de cooldown
@@ -19,77 +21,93 @@ public class FlashLight : MonoBehaviour
     private void Start()
     {
         flashLightLight.enabled = false;
-        detectionCone.enabled = false;
+        flashLightParticles.Stop(); // Asegurarse de que las partículas estén apagadas al inicio
     }
+
     void Update()
     {
         // Control de cooldown
         if (currentCooldownTime > 0)
         {
-            currentCooldownTime -= Time.deltaTime; // Reducir el tiempo de cooldown
-            return; // Si está en cooldown, no hacemos nada más
+            currentCooldownTime -= Time.deltaTime;
+            return;
         }
 
-        // Revisar si el jugador tiene la linterna equipada y está apuntando
         if (weapons.currentWeapon == Weapons.WeaponState.Flashlight && cameraManager.isAiming)
         {
-            if (Input.GetMouseButton(0) && !playerMovement.isChargingShine) // Si se está presionando el clic izquierdo
+            if (Input.GetMouseButton(0))
             {
-                // Solo activar la linterna si hay suficiente Shine
-                if (Input.GetMouseButton(0) && lightResource.GetCurrentShine() >= shineConsumptionRate * Time.deltaTime)
+                if (lightResource.GetCurrentShine() >= shineConsumptionRate * Time.deltaTime)
                 {
                     flashLightLight.enabled = true;
-                    detectionCone.enabled = true; // Activa el trigger solo si la linterna está encendida
+                    if (!flashLightParticles.isPlaying)
+                    {
+                        flashLightParticles.Play();
+                        Debug.Log("Linterna encendida: partículas activadas.");
+                    }
+                    DetectEnemyInCone();
                     lightResource.UseShine(shineConsumptionRate * Time.deltaTime);
                 }
                 else
                 {
                     flashLightLight.enabled = false;
-                    detectionCone.enabled = false; // Desactiva el trigger
+                    if (flashLightParticles.isPlaying)
+                    {
+                        flashLightParticles.Stop();
+                        Debug.Log("Linterna sin Shine: partículas desactivadas.");
+                    }
+                    canUseFlashlight = false;
                 }
             }
             else
             {
-                flashLightLight.enabled = false; // Apagar la linterna si no se está presionando el clic
-                canUseFlashlight = true; // Restablecer la posibilidad de usarla
+                flashLightLight.enabled = false;
+                if (flashLightParticles.isPlaying)
+                {
+                    flashLightParticles.Stop();
+                    Debug.Log("Linterna apagada: partículas desactivadas.");
+                }
+                canUseFlashlight = true;
             }
         }
         else
         {
-            flashLightLight.enabled = false; // Apagar la linterna si no está equipada o no está apuntando
-            detectionCone.enabled = false;
-            canUseFlashlight = true; // Restablecer la posibilidad de usarla
+            flashLightLight.enabled = false;
+            if (flashLightParticles.isPlaying)
+            {
+                flashLightParticles.Stop();
+                Debug.Log("Linterna no equipada o no apuntando: partículas desactivadas.");
+            }
+            canUseFlashlight = true;
         }
 
-        // Si la linterna se apaga por falta de Shine, reiniciamos el cooldown
         if (!canUseFlashlight && lightResource.GetCurrentShine() >= shineConsumptionRate)
         {
-            canUseFlashlight = true; // Restauramos el uso de la linterna
-            currentCooldownTime = cooldownTime; // Iniciamos el cooldown
+            canUseFlashlight = true;
+            currentCooldownTime = cooldownTime;
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            if (other.TryGetComponent<Enemy>(out var enemyScript))
-            {
-                enemyScript.FleeFromLight(transform.position);
-            }
-        }
-    }
 
-    private void OnTriggerExit(Collider other)
+    void DetectEnemyInCone()
     {
-        if (other.CompareTag("Enemy"))
+        for (int i = 0; i < rays; i++)
         {
-            // Asegúrate de que el objeto en el trigger es un enemigo
-            if (other.TryGetComponent<Enemy>(out var enemyScript))
+            float currentAngle = Mathf.Lerp(-angle / 2, angle / 2, (float)i / (rays - 1));
+            Vector3 direction = Quaternion.Euler(0, currentAngle, 0) * transform.forward;
+
+            if (Physics.Raycast(transform.position, direction, out RaycastHit hit, detectionRange, 1 << LayerMask.NameToLayer("Enemy")))
             {
-                // El enemigo deja de huir cuando ya no está en el área de la luz
-                enemyScript.ReevaluatePosition();
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    if (hit.collider.TryGetComponent<Enemy>(out var enemyScript))
+                    {
+                        enemyScript.FleeFromLight(transform.position); // El enemigo huye de la luz
+                    }
+                }
             }
+
+            Debug.DrawRay(transform.position, direction * detectionRange, Color.yellow);
         }
     }
 }
