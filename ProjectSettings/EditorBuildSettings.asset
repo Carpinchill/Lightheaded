@@ -6,15 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ESCENA MENU.unity
+    path: Assets/LIGHTHEADARCH/Scenes/ESCENA MENU.unity
     guid: ef2ebbb7d06e7f94ab1d5bd9674c6012
   - enabled: 1
-    path: Assets/Scenes/LoadingScene.unity
+    path: Assets/LIGHTHEADARCH/Scenes/PantallaCarga.unity
+    guid: 9f07ef22f6df5334595ebff2c5d9dd0e
+  - enabled: 0
+    path: Assets/LIGHTHEADARCH/Scenes/LoadingScene.unity
     guid: 1ff5a86d2282dfc41ab40283c541849e
   - enabled: 1
-    path: Assets/Scenes/LightHead.unity
+    path: Assets/LIGHTHEADARCH/Scenes/LightHead.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Derrota.unity
+    path: Assets/LIGHTHEADARCH/Scenes/Derrota.unity
     guid: 6f19cfa087ab0264bb1a51bf20c80f27
+  - enabled: 1
+    path: Assets/LIGHTHEADARCH/Scenes/Victoria.unity
+    guid: 9e4fc497a3a550744ac3d1224c124874
   m_configObjects: {}
