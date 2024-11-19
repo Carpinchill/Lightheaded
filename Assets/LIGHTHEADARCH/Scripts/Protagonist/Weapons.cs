@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Weapons : MonoBehaviour
 {
+    // Definir el enum de estados del arma
     public enum WeaponState { Unarmed, Flashlight, FutureWeapon }
     public WeaponState currentWeapon = WeaponState.Unarmed;
     public GameObject unarmed;
@@ -12,6 +13,12 @@ public class Weapons : MonoBehaviour
 
     private PlayerMovement playerMovement; // Referencia al PlayerMovement
     public FlashLight flashLightMan; // Referencia al controlador de la linterna
+
+    // Definir el delegate para el cambio de arma
+    public delegate void WeaponChangeAction(WeaponState newWeapon);  // Delegate para manejar el cambio de arma
+
+    // Definir el evento que usará el delegate
+    public event WeaponChangeAction OnWeaponChange;  // Evento que invoca el delegate
 
     void Start()
     {
@@ -45,5 +52,8 @@ public class Weapons : MonoBehaviour
         flashlight.SetActive(currentWeapon == WeaponState.Flashlight);
         futureWeapon.SetActive(currentWeapon == WeaponState.FutureWeapon);
         unarmed.SetActive(currentWeapon == WeaponState.Unarmed);
+
+        // Invocar el evento para notificar el cambio de arma
+        OnWeaponChange?.Invoke(currentWeapon);  // Si el evento tiene suscriptores, los notifica
     }
 }

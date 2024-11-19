@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
-
-public class Enemigo : MonoBehaviour
+public class Enemigo : MonoBehaviour, IEnemyActions // Implementa la interfaz IEnemyActions
 {
     public Transform player;
     public NavMeshAgent agent;
@@ -170,122 +169,33 @@ public class Enemigo : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             SceneManager.LoadScene(3); // Cargar escena de "Game Over" o similar
-            
         }
     }
 
-    public void Final_Ani()
+    // Métodos de la interfaz IEnemyActions
+    public void MoveToPlayer(Vector3 targetPosition)
+    {
+        agent.SetDestination(targetPosition);
+    }
+
+    public void StartAttack()
+    {
+        ani.SetBool("attack", true);
+        atacando = true;
+    }
+
+    public void StopAttack()
     {
         ani.SetBool("attack", false);
         atacando = false;
     }
 
-
-    /* public int rutina;
-     public float cronometro;
-     public Animator ani;
-     public Quaternion angulo;
-     public float grado;
-
-     public GameObject target;
-     public bool atacando;
-
-     public float velocidadPersecucion = 4.5f; // Velocidad al perseguir
-     public float velocidadRonda = 8f;         // Velocidad al rondar
-     public float distanciaPersecucion = 50f;  // Distancia para iniciar la persecución
-     public float distanciaAtaque = 5f;        // Distancia para iniciar el ataque
-
-     private NavMeshAgent agent;
-
-     private void Start()
-     {
-
-         ani = GetComponent<Animator>();
-         agent = GetComponent<NavMeshAgent>();
-
-         if (target == null)
-         {
-             target = GameObject.FindWithTag("Player");
-         }
-
-         // Configurar el agente con la velocidad de ronda por defecto
-         agent.speed = velocidadRonda;
-         agent.isStopped = true; // Detener el agente al inicio
-     }
-
-     private void OnCollisionEnter(Collision collision)
-     {
-         if (collision.gameObject.CompareTag("Player"))
-         {
-             SceneManager.LoadScene(2);
-         }
-     }
-
-     public void Comportamiento_Enemigo()
-     {
-         float distanciaAlJugador = Vector3.Distance(transform.position, target.transform.position);
-
-         if (distanciaAlJugador > distanciaPersecucion)
-         {
-             // El enemigo está en modo ronda (lejos del jugador)
-             agent.speed = velocidadRonda;
-             agent.isStopped = false;
-
-             cronometro += Time.deltaTime;
-             if (cronometro >= 4)
-             {
-                 rutina = Random.Range(0, 2);
-                 cronometro = 0;
-             }
-
-             switch (rutina)
-             {
-                 case 0:
-                     ani.SetBool("walk", false);
-                     agent.isStopped = true;
-                     break;
-
-                 case 1:
-                     grado = Random.Range(0, 360);
-                     angulo = Quaternion.Euler(0, grado, 0);
-                     rutina++;
-                     break;
-
-                 case 2:
-                     ani.SetBool("walk", true);
-                     agent.SetDestination(transform.position + angulo * Vector3.forward * 5f);
-                     break;
-             }
-         }
-         else if (distanciaAlJugador <= distanciaPersecucion && distanciaAlJugador > distanciaAtaque && !atacando)
-         {
-             // El enemigo está persiguiendo al jugador
-             agent.speed = velocidadPersecucion;
-             agent.isStopped = false;
-             ani.SetBool("walk", false);
-             ani.SetBool("run", true);
-             ani.SetBool("attack", false);
-             agent.SetDestination(target.transform.position);
-         }
-         else if (distanciaAlJugador <= distanciaAtaque)
-         {
-             // El enemigo está en modo de ataque
-             agent.isStopped = true;
-             ani.SetBool("walk", false);
-             ani.SetBool("run", false);
-             ani.SetBool("attack", true);
-             atacando = true;
-         }
-     }
-
-     public void Final_Ani()
-     {
-         ani.SetBool("attack", false);
-         atacando = false;
-     }
-
-     private void Update()
-     {
-         Comportamiento_Enemigo();
-     }*/
+    public void Patrol()
+    {
+        // Si el enemigo no está persiguiendo al jugador, se encarga de patrullar
+        if (!isChasingPlayer)
+        {
+            GoToNextPatrolPoint();
+        }
+    }
 }

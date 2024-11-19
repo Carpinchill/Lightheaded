@@ -695,9 +695,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 839326765313462973}
-  - component: {fileID: -1891213677571933601}
   - component: {fileID: 3004656410831295346}
-  - component: {fileID: 2402920429854757015}
+  - component: {fileID: 1946738457632158957}
   m_Layer: 0
   m_Name: Neighbor_bearTrap
   m_TagString: Untagged
@@ -723,19 +722,6 @@ Transform:
   - {fileID: 2977113746442840504}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1891213677571933601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4257593723564442913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14c5459eb8e3b5942944581638315bdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trapType: 0
 --- !u!65 &3004656410831295346
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -757,7 +743,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.4538225, y: 0.883778, z: 0.36725622}
   m_Center: {x: -0.090615734, y: -0.05810941, z: 0.1928074}
---- !u!114 &2402920429854757015
+--- !u!114 &1946738457632158957
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -769,6 +755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4870bee5192e894f952dc2627ec1034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trapType: 0
   sonido: {fileID: 725166362491856302}
 --- !u!1 &4440837537806414033
 GameObject:
