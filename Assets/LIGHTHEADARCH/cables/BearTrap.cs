@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trampa : MonoBehaviour
+public class BearTrap : MonoBehaviour
 {
     public AudioSource sonido;
 
