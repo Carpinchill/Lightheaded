@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MudTrap : MonoBehaviour
+public class TrapManager : MonoBehaviour
 {
     public enum TrapType { Immobilize, SlowDown }
     public TrapType trapType;
