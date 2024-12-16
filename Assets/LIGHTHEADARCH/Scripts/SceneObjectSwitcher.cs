@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using System.Collections;
-using UnityEngine;
-
 public class SceneObjectSwitcher : MonoBehaviour
 {
     public GameObject objectToDeactivate; // El objeto que se desactivará
