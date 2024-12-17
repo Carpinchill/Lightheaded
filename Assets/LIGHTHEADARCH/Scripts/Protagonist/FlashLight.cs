@@ -4,29 +4,30 @@ using UnityEngine;
 
 public class FlashLight : MonoBehaviour
 {
-    public float detectionRange = 10f; // Rango de detección de la linterna
-    public int rays = 10; // Cantidad de rayos para el cono de luz
-    public float angle = 30f; // Ángulo del cono de luz
-    public float shineConsumptionRate; // Consumo de Shine por segundo
-    public LightResource lightResource; // Referencia al script de LightResource
-    public Weapons weapons; // Referencia al script de Weapons
-    public CameraManager cameraManager; // Referencia al script de CameraManager
+    //BRUNO
+    public float detectionRange = 10f; 
+    public int rays = 10; 
+    public float angle = 30f; 
+    public float shineConsumptionRate; 
+    public LightResource lightResource; 
+    public Weapons weapons; 
+    public CameraManager cameraManager; 
     public Light flashLightLight;
-    public ParticleSystem flashLightParticles; // Sistema de partículas de la linterna
+    public ParticleSystem flashLightParticles; 
 
-    private bool canUseFlashlight = true; // Determina si la linterna puede ser usada
-    private float cooldownTime = 5f; // Tiempo de cooldown
-    private float currentCooldownTime; // Tiempo actual de cooldown
+    private bool canUseFlashlight = true; 
+    private float cooldownTime = 5f; 
+    private float currentCooldownTime; 
 
     private void Start()
     {
         flashLightLight.enabled = false;
-        flashLightParticles.Stop(); // Asegurarse de que las partículas estén apagadas al inicio
+        flashLightParticles.Stop(); 
     }
 
     void Update()
     {
-        // Control de cooldown
+        
         if (currentCooldownTime > 0)
         {
             currentCooldownTime -= Time.deltaTime;
@@ -102,7 +103,7 @@ public class FlashLight : MonoBehaviour
                 {
                     if (hit.collider.TryGetComponent<Enemy>(out var enemyScript))
                     {
-                        enemyScript.FleeFromLight(transform.position); // El enemigo huye de la luz
+                        enemyScript.FleeFromLight(transform.position); 
                     }
                 }
             }

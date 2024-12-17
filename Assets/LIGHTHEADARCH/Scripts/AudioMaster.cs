@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class AudioMasater : MonoBehaviour
 {
+    //BELEN
     public AudioMixer audiomixer;
     [Header("Musica")]
 
@@ -21,14 +22,14 @@ public class AudioMasater : MonoBehaviour
 
     public Slider GenSlider;
     public Toggle MuteGen;
-    // Start is called before the first frame update
+   
     void Start()
     {
 
         AudioSettings();
     }
 
-    // Update is called once per frame
+    
   public void AudioSettings()
     {
         float musicVolume;

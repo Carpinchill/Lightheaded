@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Weapons : MonoBehaviour
 {
-    // Definir el enum de estados del arma
+    //FRANCO
     public enum WeaponState { Unarmed, Flashlight, FutureWeapon }
     public WeaponState currentWeapon = WeaponState.Unarmed;
     public GameObject unarmed;
     public GameObject flashlight; // referencia a la linterna
     public GameObject futureWeapon; // referencia para la futura arma
 
-    private PlayerMovement playerMovement; // Referencia al PlayerMovement
+    private _playerMovement playerMovement; // Referencia al PlayerMovement
     public FlashLight flashLightMan; // Referencia al controlador de la linterna
 
     // Definir el delegate para el cambio de arma
@@ -23,7 +23,7 @@ public class Weapons : MonoBehaviour
     void Start()
     {
         flashlight.SetActive(false);
-        playerMovement = GetComponent<PlayerMovement>(); // Obtener la referencia al PlayerMovement
+        playerMovement = GetComponent<_playerMovement>(); // Obtener la referencia al PlayerMovement
     }
 
     void Update()

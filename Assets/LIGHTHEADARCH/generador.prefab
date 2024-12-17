@@ -94,6 +94,8 @@ GameObject:
   - component: {fileID: 4828141362026144134}
   - component: {fileID: 1953526832733439921}
   - component: {fileID: 868133860863203309}
+  - component: {fileID: 1926513177991288132}
+  - component: {fileID: 3345354320092046813}
   m_Layer: 0
   m_Name: Game_Ready_Generator_Low_Poly
   m_TagString: Untagged
@@ -150,14 +152,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20495992d2e79144aae116b6292a5184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressBar: {fileID: 2004129232063452960}
-  generatorTransform: {fileID: 4828141362026144134}
-  offset: {x: 2, y: 2, z: 0}
+  progressBarHandler: {fileID: 3345354320092046813}
+  lightController: {fileID: 1926513177991288132}
   objectToDeactivate: {fileID: 8724239487478467396}
+  generatorActivateSound: {fileID: 3869939215131756046}
+  progressSpeed: 0.5
+--- !u!114 &1926513177991288132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265364049683955073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dce74d702f8e904fbe27e7bb8566d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   lightToDeactivate: {fileID: 7859001315061341768}
   lightToActivate: {fileID: 5984586283464469249}
-  isNearGenerator: 0
-  progressSpeed: 0.5
+--- !u!114 &3345354320092046813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265364049683955073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41af06f0e7464a646adaecffbde7e243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressBar: {fileID: 2004129232063452960}
 --- !u!1 &325989276931608410
 GameObject:
   m_ObjectHideFlags: 0
@@ -24056,7 +24082,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8185901343075395553, guid: d20303e6639c41042911143abaf4e385, type: 2}
   m_audioClip: {fileID: 8300000, guid: 481d563517bc8e846887f6ea7bde1404, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1

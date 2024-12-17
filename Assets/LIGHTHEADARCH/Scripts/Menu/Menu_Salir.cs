@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Menu_Salir : MonoBehaviour
 {
+    //FRANCO
     public void Jugar(string LightHead)
     {
         SceneManager.LoadScene(1);

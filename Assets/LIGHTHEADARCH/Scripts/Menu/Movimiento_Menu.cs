@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Movimiento_Menu : MonoBehaviour
 {
+    //FRANCO
     float mousePosX;
     float mousePosY;
     void Start()
@@ -11,7 +12,7 @@ public class Movimiento_Menu : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         mousePosX = Input.mousePosition.x;
