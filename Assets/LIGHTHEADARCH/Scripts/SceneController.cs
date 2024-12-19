@@ -21,7 +21,7 @@ public class SceneController : MonoBehaviour
     IEnumerator Carga()
     {
         sliderProgreso.gameObject.SetActive(true);
-        AsyncOperation operacionCarga = SceneManager.LoadSceneAsync(2);
+        AsyncOperation operacionCarga = SceneManager.LoadSceneAsync("LightHeadBruno");
 
         while (operacionCarga.isDone == false)
         {

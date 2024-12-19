@@ -8,7 +8,7 @@ public class Menu_Salir : MonoBehaviour
     //FRANCO
     public void Jugar(string LightHead)
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("LightHeadBruno");
         Time.timeScale = 1;
 
         Cursor.visible = false;
@@ -20,7 +20,7 @@ public class Menu_Salir : MonoBehaviour
     }
     public void menu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("ESCENA MENU");
 
     }
 }

@@ -23,7 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/LIGHTHEADARCH/Scenes/Victoria.unity
     guid: 9e4fc497a3a550744ac3d1224c124874
-  - enabled: 1
+  - enabled: 0
     path: Assets/LIGHTHEADARCH/Scenes/LoseScene.unity
     guid: 9bd73098561e1fa4cbbdf883f4db5a9d
+  - enabled: 1
+    path: Assets/LIGHTHEADARCH/Scenes/LightHeadBruno.unity
+    guid: 084245671984198479641f36d41d01ce
   m_configObjects: {}

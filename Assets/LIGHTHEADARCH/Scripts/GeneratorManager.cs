@@ -42,6 +42,6 @@ public class GeneratorManager : MonoBehaviour
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene("Victoria");
     }
 }
