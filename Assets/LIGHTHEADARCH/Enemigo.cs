@@ -51,7 +51,7 @@ public class Enemigo : EnemyBase
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene("LoseScene");
         }
     }
     protected override void InitializePatrolPoints()
