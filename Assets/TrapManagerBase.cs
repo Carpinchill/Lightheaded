@@ -5,26 +5,27 @@ using UnityEngine;
 
 public class TrapManagerBase : MonoBehaviour
 {
+    //BELEN
     public enum TrapType
     {
-        Stun, // Inmoviliza al jugador
-        SlowDown,   // Ralentiza al jugador
-        Noise       // Hace ruido para atraer al enemigo
+        Stun, 
+        SlowDown,   
+        Noise       
     }
 
-    public TrapType trapType; // Tipo de trampa asignado en el Inspector
+    public TrapType trapType; 
 
     private Dictionary<TrapType, string> trapEffects = new Dictionary<TrapType, string>();
 
     void Start()
     {
-        // Inicializamos el diccionario con los efectos de cada trampa
+        
         trapEffects.Add(TrapType.Stun, "Frena al jugador por 2 segundos.");
         trapEffects.Add(TrapType.SlowDown, "Ralentiza al jugador mientras está en la trampa.");
         trapEffects.Add(TrapType.Noise, "Genera ruido y atrae al enemigo.");
     }
 
-    // Método para obtener el efecto de la trampa
+    
     public string GetTrapEffect()
     {
         if (trapEffects.TryGetValue(trapType, out string effect))

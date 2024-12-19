@@ -4,19 +4,19 @@ using UnityEngine;
 using TMPro;
 
 
-public class CanvasManager : MonoBehaviour
+public class TextoCanvasInicio : MonoBehaviour
 {
     //FRANCO
-    public TextMeshProUGUI objectiveText; 
-    public float displayDuration = 5f;   
+    public TextMeshProUGUI objectiveText;
+    public float displayDuration = 5f;
 
     void Start()
     {
-        
+
         if (objectiveText != null)
         {
             objectiveText.gameObject.SetActive(true);
-            Invoke("HideObjectiveText", displayDuration); 
+            Invoke("HideObjectiveText", displayDuration);
         }
     }
 
@@ -24,8 +24,8 @@ public class CanvasManager : MonoBehaviour
     {
         if (objectiveText != null)
         {
-            objectiveText.gameObject.SetActive(false); 
-        }
+            objectiveText.gameObject.SetActive(false);
+        }
     }
 
 }

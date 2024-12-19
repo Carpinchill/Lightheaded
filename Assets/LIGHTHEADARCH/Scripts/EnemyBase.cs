@@ -4,22 +4,27 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
+public delegate void EnemyAction(string actionDescription);
+
 public abstract class EnemyBase : MonoBehaviour
 {
     public Transform player;
     public NavMeshAgent agent;
-    public float detectionRange = 10f; // Rango de detección del jugador
-    public float chaseSpeed = 5f;     // Velocidad al perseguir
-    public float patrolSpeed = 2f;    // Velocidad al patrullar
+    public float detectionRange = 10f;
+    public float chaseSpeed = 5f;
+    public float patrolSpeed = 2f;
 
-    protected bool isChasingPlayer = false; // Indica si está persiguiendo al jugador
-    protected bool isAttacking = false;    // Indica si está atacando
-    private Vector3 currentAvoidPoint;     // Punto actual para evitar la bengala
-    private bool avoidingLight = false;    // Indica si está evitando la luz
+    protected bool _isChasingPlayer = false;
+    protected bool _isAttacking = false;
+    private Vector3 _currentAvoidPoint;
+    private bool _avoidingLight = false;
 
     // Puntos de patrullaje
-    protected int currentPatrolIndex = 0;
-    protected Vector3[] patrolPoints;
+    public Vector3[] patrolPoints;
+    protected int _currentPatrolIndex = 0;
+
+    // Delegado para notificar acciones
+    public event EnemyAction OnEnemyAction;
 
     protected virtual void Start()
     {
@@ -30,7 +35,7 @@ public abstract class EnemyBase : MonoBehaviour
             player = GameObject.FindWithTag("Player")?.transform;
         }
 
-        InitializePatrolPoints();
+        InitializePatrolPoints();  // Método abstracto, implementado en la clase derivada
         agent.speed = patrolSpeed;
 
         if (patrolPoints != null && patrolPoints.Length > 0)
@@ -41,10 +46,9 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (avoidingLight)
+        if (_avoidingLight)
         {
-            // Si estamos evitando la luz, nos movemos hacia el punto de evasión
-            agent.SetDestination(currentAvoidPoint);
+            agent.SetDestination(_currentAvoidPoint);
             return;
         }
 
@@ -54,7 +58,7 @@ public abstract class EnemyBase : MonoBehaviour
         {
             ChasePlayer();
         }
-        else if (isChasingPlayer)
+        else if (_isChasingPlayer)
         {
             StopChasingPlayer();
         }
@@ -67,31 +71,37 @@ public abstract class EnemyBase : MonoBehaviour
         {
             AttackPlayer();
         }
-        else if (isAttacking)
+        else if (_isAttacking)
         {
             StopAttack();
         }
     }
 
-    protected abstract void AttackPlayer(); // Método que define el ataque específico de cada enemigo
+    protected abstract void AttackPlayer();
 
     protected virtual void StopAttack()
     {
-        isAttacking = false;
+        _isAttacking = false;
     }
 
     protected virtual void ChasePlayer()
     {
-        isChasingPlayer = true;
+        _isChasingPlayer = true;
         agent.speed = chaseSpeed;
         agent.SetDestination(player.position);
+
+        // Notificar que el enemigo está persiguiendo
+        OnEnemyAction?.Invoke("El enemigo está persiguiendo al jugador.");
     }
 
     protected virtual void StopChasingPlayer()
     {
-        isChasingPlayer = false;
+        _isChasingPlayer = false;
         agent.speed = patrolSpeed;
         GoToNextPatrolPoint();
+
+        // Notificar que el enemigo ha dejado de perseguir
+        OnEnemyAction?.Invoke("El enemigo ha dejado de perseguir al jugador.");
     }
 
     protected virtual void Patrol()
@@ -106,32 +116,36 @@ public abstract class EnemyBase : MonoBehaviour
     {
         if (patrolPoints == null || patrolPoints.Length == 0) return;
 
-        agent.destination = patrolPoints[currentPatrolIndex];
-        currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
+        agent.destination = patrolPoints[_currentPatrolIndex];
+        _currentPatrolIndex = (_currentPatrolIndex + 1) % patrolPoints.Length;
     }
 
     protected abstract void InitializePatrolPoints();
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Light")) // Detectar si es un área de luz
+        if (other.CompareTag("Light"))
         {
-            avoidingLight = true;
-
-            // Calcular un punto fuera del área de luz
+            _avoidingLight = true;
             Vector3 directionAway = (transform.position - other.transform.position).normalized;
-            float lightRadius = other.bounds.extents.magnitude; // Obtener el radio aproximado del SphereCollider
-            currentAvoidPoint = other.transform.position + directionAway * (lightRadius + 2f);
+            float lightRadius = other.bounds.extents.magnitude;
+            _currentAvoidPoint = other.transform.position + directionAway * (lightRadius + 2f);
 
-            agent.speed = patrolSpeed; // Ajustar la velocidad mientras rodea
+            agent.speed = patrolSpeed;
+
+            // Notificar que el enemigo está evitando la luz
+            OnEnemyAction?.Invoke("El enemigo está evitando la luz.");
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Light")) // Salir del área de luz
+        if (other.CompareTag("Light"))
         {
-            avoidingLight = false;
+            _avoidingLight = false;
+
+            // Notificar que el enemigo ha dejado de evitar la luz
+            OnEnemyAction?.Invoke("El enemigo ha dejado de evitar la luz.");
         }
     }
 }

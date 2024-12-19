@@ -3,17 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class GeneratorManager : MonoBehaviour
 {
-    public static GeneratorManager Instance; // Singleton
-    private int activeGenerators = 0; // Contador de generadores activados
-    public int totalGenerators = 5;  // Número total de generadores necesarios para ganar
+    //FRANCO
+    public static GeneratorManager Instance; 
+    private int _activeGenerators = 0; 
+    public int totalGenerators = 5;  
 
     private void Awake()
     {
-        // Configurar Singleton
+        
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Mantener entre escenas
+            
         }
         else
         {
@@ -21,14 +22,14 @@ public class GeneratorManager : MonoBehaviour
         }
     }
 
-    // Llamado desde el script GeneratorRepair cuando un generador es activado
+    
     public void ActivateGenerator()
     {
-        activeGenerators++;
-        Debug.Log($"Generadores activados: {activeGenerators}/{totalGenerators}");
+        _activeGenerators++;
+        Debug.Log($"Generadores activados: {_activeGenerators}/{totalGenerators}");
 
-        // Verifica si todos los generadores están activados
-        if (activeGenerators >= totalGenerators)
+        
+        if (_activeGenerators >= totalGenerators)
         {
             LoadVictoryScene();
         }
@@ -41,6 +42,6 @@ public class GeneratorManager : MonoBehaviour
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        SceneManager.LoadScene(4); // Cambia "4" por el índice o nombre de tu escena de victoria
+        SceneManager.LoadScene(4);
     }
 }

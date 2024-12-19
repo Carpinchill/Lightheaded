@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -542,7 +542,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 327809175880460324, guid: f46f30e57c75b394583462d7526fa89e, type: 3}
   m_PrefabInstance: {fileID: 1192547816}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1192547817}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af2b43f356d521f43858c98eddbee51c, type: 3}
@@ -722,8 +722,16 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8510627798689285231, guid: f46f30e57c75b394583462d7526fa89e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 299802241}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1416031023997784405, guid: f46f30e57c75b394583462d7526fa89e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1521281323}
   m_SourcePrefab: {fileID: 100100000, guid: f46f30e57c75b394583462d7526fa89e, type: 3}
+--- !u!1 &1192547817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1416031023997784405, guid: f46f30e57c75b394583462d7526fa89e, type: 3}
+  m_PrefabInstance: {fileID: 1192547816}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1314857651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -984,6 +992,20 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1211107159942547521, guid: f46f30e57c75b394583462d7526fa89e, type: 3}
   m_PrefabInstance: {fileID: 1192547816}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1521281323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192547817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338eb363937502b448a168a0a75bef45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuPause: {fileID: 0}
+  cameraManager: {fileID: 0}
 --- !u!1001 &1576609572
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;  // Necesario para trabajar con UI, incluyendo Image
+using UnityEngine.UI;  
 
 public class GeneratorRepair : MonoBehaviour
 {
-    public ProgressBarHandler progressBarHandler; // Composición con barra de progreso
-    public LightController lightController;       // Composición con controlador de luces
-    public GameObject objectToDeactivate;         // Objeto a desactivar
-    public AudioSource generatorActivateSound;    // Sonido del generador
-    public float progressSpeed = 0.5f;            // Velocidad de llenado de la barra
-
-    private bool isNearGenerator = false;
-    private bool isActivated = false;
+    //BELEN
+    public ProgressBarHandler progressBarHandler; 
+    public LightController lightController;       
+    public GameObject objectToDeactivate;         
+    public AudioSource generatorActivateSound;    
+    public float progressSpeed = 0.5f;            
+    private bool _isNearGenerator = false;
+    private bool _isActivated = false;
 
     void Update()
     {
-        if (isNearGenerator && !isActivated)
+        if (_isNearGenerator && !_isActivated)
         {
             if (Input.GetKey(KeyCode.E))
             {
@@ -33,7 +33,7 @@ public class GeneratorRepair : MonoBehaviour
 
     private void ActivateGenerator()
     {
-        isActivated = true;
+        _isActivated = true;
         progressBarHandler.ShowProgressBar(false);
 
         if (generatorActivateSound != null)
@@ -51,7 +51,7 @@ public class GeneratorRepair : MonoBehaviour
             lightController.ToggleLights();
         }
 
-        // Notifica al GeneratorManager
+        
         if (GeneratorManager.Instance != null)
         {
             GeneratorManager.Instance.ActivateGenerator();
@@ -62,7 +62,7 @@ public class GeneratorRepair : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            isNearGenerator = true;
+            _isNearGenerator = true;
             progressBarHandler.ShowProgressBar(true);
         }
     }
@@ -71,7 +71,7 @@ public class GeneratorRepair : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            isNearGenerator = false;
+            _isNearGenerator = false;
             progressBarHandler.ShowProgressBar(false);
         }
     }

@@ -5,25 +5,26 @@ using UnityEngine;
 
 public class ProgressBarHandler : MonoBehaviour
 {
+    //FRANCO
     public Image progressBar;
 
-    private float progress = 0f;
+    private float _progress = 0f;
 
     public void UpdateProgress(float increment)
     {
-        progress += increment;
-        progress = Mathf.Clamp01(progress); // Asegura que el progreso esté entre 0 y 1
+        _progress += increment;
+        _progress = Mathf.Clamp01(_progress); 
         if (progressBar != null)
         {
-            progressBar.fillAmount = progress;
+            progressBar.fillAmount = _progress;
         }
     }
 
-    public bool IsComplete() => progress >= 1f;
+    public bool IsComplete() => _progress >= 1f;
 
     public void ResetProgress()
     {
-        progress = 0f;
+        _progress = 0f;
         if (progressBar != null)
         {
             progressBar.fillAmount = 0f;

@@ -16,10 +16,10 @@ public class Enemigo : EnemyBase
 
     protected override void AttackPlayer()
     {
-        if (!isAttacking)
+        if (!_isAttacking)
         {
             animator.SetBool("attack", true);
-            isAttacking = true;
+            _isAttacking = true;
         }
     }
 
@@ -51,7 +51,7 @@ public class Enemigo : EnemyBase
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("LoseScene");
+            SceneManager.LoadScene("Derrota");
         }
     }
     protected override void InitializePatrolPoints()
