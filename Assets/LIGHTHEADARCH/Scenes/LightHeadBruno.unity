@@ -25615,6 +25615,14 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5823237687294320496, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: interactionCanvas
+      value: 
+      objectReference: {fileID: 952605702}
+    - target: {fileID: 5823237687294320496, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: progressBarCanvas
+      value: 
+      objectReference: {fileID: 897438089}
     - target: {fileID: 6956454420938071924, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
       propertyPath: m_Name
       value: generador (4)
@@ -26434,6 +26442,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6492c94bc0b672641be265bb175c7070, type: 3}
+--- !u!1 &742316227 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2566641755610495321, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+  m_PrefabInstance: {fileID: 2078734299}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &742864798 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3753903095771173760, guid: ba201be0cb4aade40883b5f673e192af, type: 3}
@@ -30861,6 +30874,11 @@ MonoBehaviour:
   m_Center: {x: 0, y: 1, z: 0}
   m_Area: 4
   m_AffectedAgents: ffffffff
+--- !u!1 &897438089 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2566641755610495321, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+  m_PrefabInstance: {fileID: 709123582}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &897950336
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31553,6 +31571,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &910844808 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2566641755610495321, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+  m_PrefabInstance: {fileID: 1208902074}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &912061479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36233,6 +36256,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8405955538625229579, guid: e08b40f9daef20948b7a5fb55f2966b6, type: 3}
   m_PrefabInstance: {fileID: 279073509}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1057986102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2566641755610495321, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+  m_PrefabInstance: {fileID: 1296768642}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1059282707
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38755,6 +38783,11 @@ PrefabInstance:
       addedObject: {fileID: 1108366681}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e08b40f9daef20948b7a5fb55f2966b6, type: 3}
+--- !u!1 &1116041322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2566641755610495321, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+  m_PrefabInstance: {fileID: 1666574835}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1116388294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8405955538625229579, guid: e08b40f9daef20948b7a5fb55f2966b6, type: 3}
@@ -41828,6 +41861,14 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5823237687294320496, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: interactionCanvas
+      value: 
+      objectReference: {fileID: 1382514707}
+    - target: {fileID: 5823237687294320496, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: progressBarCanvas
+      value: 
+      objectReference: {fileID: 910844808}
     - target: {fileID: 6956454420938071924, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
       propertyPath: m_Name
       value: generador (1)
@@ -44590,6 +44631,14 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 5823237687294320496, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: interactionCanvas
+      value: 
+      objectReference: {fileID: 166034725}
+    - target: {fileID: 5823237687294320496, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: progressBarCanvas
+      value: 
+      objectReference: {fileID: 1057986102}
     - target: {fileID: 6956454420938071924, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
       propertyPath: m_Name
       value: generador (2)
@@ -55751,6 +55800,14 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5823237687294320496, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: interactionCanvas
+      value: 
+      objectReference: {fileID: 1220319406}
+    - target: {fileID: 5823237687294320496, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: progressBarCanvas
+      value: 
+      objectReference: {fileID: 1116041322}
     - target: {fileID: 6956454420938071924, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
       propertyPath: m_Name
       value: generador (3)
@@ -61902,7 +61959,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1416031023997784405, guid: f46f30e57c75b394583462d7526fa89e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2536135127506651482, guid: f46f30e57c75b394583462d7526fa89e, type: 3}
       propertyPath: m_IsActive
@@ -61918,7 +61975,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4451763651799262177, guid: f46f30e57c75b394583462d7526fa89e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4953147322439584824, guid: f46f30e57c75b394583462d7526fa89e, type: 3}
       propertyPath: m_SortingOrder
@@ -62780,6 +62837,14 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5823237687294320496, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: interactionCanvas
+      value: 
+      objectReference: {fileID: 1457742884}
+    - target: {fileID: 5823237687294320496, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: progressBarCanvas
+      value: 
+      objectReference: {fileID: 1968698574}
     - target: {fileID: 6956454420938071924, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
       propertyPath: m_Name
       value: generador (6)
@@ -62788,10 +62853,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: PatrolPoint
       objectReference: {fileID: 0}
-    - target: {fileID: 8061137085516819507, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
-      propertyPath: interactionCanvas
-      value: 
-      objectReference: {fileID: 1457742884}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -65071,6 +65132,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9123514680570373949, guid: 6492c94bc0b672641be265bb175c7070, type: 3}
   m_PrefabInstance: {fileID: 53305547}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1968698574 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2566641755610495321, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+  m_PrefabInstance: {fileID: 1885737106}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1970710419 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3753903095771173760, guid: ba201be0cb4aade40883b5f673e192af, type: 3}
@@ -65300,7 +65366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338eb363937502b448a168a0a75bef45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuPause: {fileID: 1976919785}
+  MenuPause: {fileID: 103770957}
   cameraManager: {fileID: 1105817074}
 --- !u!4 &1977218602 stripped
 Transform:
@@ -68670,6 +68736,14 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 5823237687294320496, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: interactionCanvas
+      value: 
+      objectReference: {fileID: 783182542}
+    - target: {fileID: 5823237687294320496, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: progressBarCanvas
+      value: 
+      objectReference: {fileID: 742316227}
     - target: {fileID: 6956454420938071924, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
       propertyPath: m_Name
       value: generador (5)

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
-public class AutoTypingText : MonoBehaviour
+public class Text : MonoBehaviour
 {
     public TextMeshProUGUI textComponent; // El componente de texto
     public string fullText = ""; // Texto con saltos de línea
