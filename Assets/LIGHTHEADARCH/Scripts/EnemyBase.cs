@@ -10,9 +10,9 @@ public abstract class EnemyBase : MonoBehaviour
 {
     public Transform player;
     public NavMeshAgent agent;
-    public float detectionRange = 10f;
+    public float detectionRange = 60f;
     public float chaseSpeed = 5f;
-    public float patrolSpeed = 2f;
+    public float patrolSpeed = 6f;
 
     protected bool _isChasingPlayer = false;
     protected bool _isAttacking = false;
@@ -46,6 +46,8 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void Update()
     {
+        
+
         if (_avoidingLight)
         {
             agent.SetDestination(_currentAvoidPoint);
@@ -90,8 +92,6 @@ public abstract class EnemyBase : MonoBehaviour
         agent.speed = chaseSpeed;
         agent.SetDestination(player.position);
 
-        // Notificar que el enemigo está persiguiendo
-        OnEnemyAction?.Invoke("El enemigo está persiguiendo al jugador.");
     }
 
     protected virtual void StopChasingPlayer()
@@ -100,13 +100,11 @@ public abstract class EnemyBase : MonoBehaviour
         agent.speed = patrolSpeed;
         GoToNextPatrolPoint();
 
-        // Notificar que el enemigo ha dejado de perseguir
-        OnEnemyAction?.Invoke("El enemigo ha dejado de perseguir al jugador.");
     }
 
     protected virtual void Patrol()
     {
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        if (!agent.pathPending && agent.remainingDistance < 3f)
         {
             GoToNextPatrolPoint();
         }

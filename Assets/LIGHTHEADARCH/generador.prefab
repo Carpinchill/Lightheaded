@@ -93,10 +93,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4828141362026144134}
   - component: {fileID: 1953526832733439921}
-  - component: {fileID: 868133860863203309}
   - component: {fileID: 1926513177991288132}
   - component: {fileID: 3345354320092046813}
   - component: {fileID: 8061137085516819507}
+  - component: {fileID: 5823237687294320496}
   m_Layer: 0
   m_Name: Game_Ready_Generator_Low_Poly
   m_TagString: Untagged
@@ -141,23 +141,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.3468184, y: 0.17146918, z: 0.2132709}
   m_Center: {x: 0.025501877, y: 0.053398117, z: -0.039180357}
---- !u!114 &868133860863203309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 265364049683955073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20495992d2e79144aae116b6292a5184, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  progressBarHandler: {fileID: 3345354320092046813}
-  lightController: {fileID: 1926513177991288132}
-  objectToDeactivate: {fileID: 8724239487478467396}
-  generatorActivateSound: {fileID: 3869939215131756046}
-  progressSpeed: 0.5
 --- !u!114 &1926513177991288132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +182,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionCanvas: {fileID: 0}
   detectionRadius: 20
+--- !u!114 &5823237687294320496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265364049683955073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20495992d2e79144aae116b6292a5184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressBarHandler: {fileID: 3345354320092046813}
+  lightController: {fileID: 1926513177991288132}
+  objectToDeactivate: {fileID: 8724239487478467396}
+  generatorActivateSound: {fileID: 3869939215131756046}
+  progressSpeed: 0.5
 --- !u!1 &325989276931608410
 GameObject:
   m_ObjectHideFlags: 0

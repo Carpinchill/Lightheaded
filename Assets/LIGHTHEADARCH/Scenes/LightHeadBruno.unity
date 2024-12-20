@@ -21271,7 +21271,7 @@ MonoBehaviour:
   agent: {fileID: 564600938}
   detectionRange: 20
   chaseSpeed: 5
-  patrolSpeed: 2
+  patrolSpeed: 12
   patrolPoints: []
   animator: {fileID: 564600939}
 --- !u!4 &568877825 stripped
@@ -25609,6 +25609,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 150859600554514308, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 309908454665629572, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: m_Intensity
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6956454420938071924, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
@@ -41820,6 +41824,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 309908454665629572, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6956454420938071924, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
       propertyPath: m_Name
       value: generador (1)
@@ -44572,6 +44580,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 150859600554514308, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 309908454665629572, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: m_Intensity
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1750420381661233226, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
@@ -55735,6 +55747,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 309908454665629572, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6956454420938071924, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
       propertyPath: m_Name
       value: generador (3)
@@ -62760,6 +62776,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 309908454665629572, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6956454420938071924, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
       propertyPath: m_Name
       value: generador (6)
@@ -68640,6 +68660,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 150859600554514308, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 309908454665629572, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
+      propertyPath: m_Intensity
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1750420381661233226, guid: ec6e1a11077bcc349bad8a4bb2ea696b, type: 3}
