@@ -8,9 +8,17 @@ public class ParedInvisibleFinal : MonoBehaviour
     {
         if (other.CompareTag("Player")) // Asegúrate de que tu jugador tenga la etiqueta "Player"
         {
-            Debug.Log("Victoria: Entraste al búnker.");
-            SceneManager.LoadScene("Victoria");
+            LoadVictoryScene();
         }
+    }
+    private void LoadVictoryScene()
+    {
+        Debug.Log("¡Todos los generadores activados! Cargando escena de victoria...");
+        Time.timeScale = 0;
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        SceneManager.LoadScene("Victoria");
     }
 
 }

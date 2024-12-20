@@ -5,7 +5,7 @@ public class GeneratorManager : MonoBehaviour
 {
     //FRANCO
     public static GeneratorManager Instance; 
-    private int _activeGenerators = 0; 
+    public int _activeGenerators = 0; 
     public int totalGenerators = 5;  
 
     private void Awake()
@@ -31,7 +31,7 @@ public class GeneratorManager : MonoBehaviour
         
         if (_activeGenerators >= totalGenerators)
         {
-            LoadVictoryScene();
+            
         }
     }
 
