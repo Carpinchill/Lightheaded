@@ -96,7 +96,7 @@ public class Enemigo : EnemyBase
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Derrota");
+            SceneManager.LoadScene("Derrota 1");
         }
     }
 

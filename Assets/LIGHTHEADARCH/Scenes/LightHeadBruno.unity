@@ -21132,7 +21132,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 21d2ad855712fd2419c6a00b1454d92a, type: 3}
   m_PrefabInstance: {fileID: 1825618425}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &564600937
+--- !u!195 &564600938
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564600930}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!95 &564600939 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 21d2ad855712fd2419c6a00b1454d92a, type: 3}
+  m_PrefabInstance: {fileID: 1825618425}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &564600940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564600930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75d62aa1ceed4449857d30788e8c6ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1515857499}
+  agent: {fileID: 564600938}
+  detectionRange: 20
+  chaseSpeed: 5
+  patrolSpeed: 12
+  patrolPoints: []
+  animator: {fileID: 564600939}
+  tensionMusic: {fileID: 564600941}
+  fadeOutSpeed: 1
+--- !u!82 &564600941
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -21141,12 +21189,12 @@ AudioSource:
   m_GameObject: {fileID: 564600930}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  OutputAudioMixerGroup: {fileID: -724967018356951442, guid: d20303e6639c41042911143abaf4e385, type: 2}
+  m_audioClip: {fileID: 8300000, guid: f3afe1fbeb421ed4ca3ba1a907685291, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -21228,52 +21276,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!195 &564600938
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564600930}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 1
-  m_Speed: 6
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!95 &564600939 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 21d2ad855712fd2419c6a00b1454d92a, type: 3}
-  m_PrefabInstance: {fileID: 1825618425}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &564600940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564600930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f75d62aa1ceed4449857d30788e8c6ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1515857499}
-  agent: {fileID: 564600938}
-  detectionRange: 20
-  chaseSpeed: 5
-  patrolSpeed: 12
-  patrolPoints: []
-  animator: {fileID: 564600939}
 --- !u!4 &568877825 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3753903095771173760, guid: ba201be0cb4aade40883b5f673e192af, type: 3}
@@ -60252,13 +60254,13 @@ PrefabInstance:
       addedObject: {fileID: 564600935}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21d2ad855712fd2419c6a00b1454d92a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 564600937}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21d2ad855712fd2419c6a00b1454d92a, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 564600938}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21d2ad855712fd2419c6a00b1454d92a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 564600940}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21d2ad855712fd2419c6a00b1454d92a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 564600941}
   m_SourcePrefab: {fileID: 100100000, guid: 21d2ad855712fd2419c6a00b1454d92a, type: 3}
 --- !u!1001 &1826516066
 PrefabInstance:
