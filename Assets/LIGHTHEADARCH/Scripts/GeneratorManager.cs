@@ -5,7 +5,7 @@ public class GeneratorManager : MonoBehaviour
 {
     //FRANCO
     public static GeneratorManager Instance; 
-    private int _activeGenerators = 0; 
+    public int _activeGenerators = 0; 
     public int totalGenerators = 5;  
 
     private void Awake()
@@ -31,17 +31,13 @@ public class GeneratorManager : MonoBehaviour
         
         if (_activeGenerators >= totalGenerators)
         {
-            LoadVictoryScene();
+            
         }
     }
 
     private void LoadVictoryScene()
     {
-        Debug.Log("¡Todos los generadores activados! Cargando escena de victoria...");
-        Time.timeScale = 0;
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        SceneManager.LoadScene("Victoria");
+        Debug.Log("¡Todos los generadores activados!");
+        
     }
-}
+} 
