@@ -37,11 +37,7 @@ public class GeneratorManager : MonoBehaviour
 
     private void LoadVictoryScene()
     {
-        Debug.Log("¡Todos los generadores activados! Cargando escena de victoria...");
-        Time.timeScale = 0;
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        SceneManager.LoadScene("Victoria");
+        Debug.Log("¡Todos los generadores activados!");
+        
     }
-}
+} 
