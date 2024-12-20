@@ -95,7 +95,6 @@ GameObject:
   - component: {fileID: 1953526832733439921}
   - component: {fileID: 1926513177991288132}
   - component: {fileID: 3345354320092046813}
-  - component: {fileID: 8061137085516819507}
   - component: {fileID: 5823237687294320496}
   m_Layer: 0
   m_Name: Game_Ready_Generator_Low_Poly
@@ -168,20 +167,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressBar: {fileID: 2004129232063452960}
---- !u!114 &8061137085516819507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 265364049683955073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42b6392e604935f4eab69e7a33c7a674, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionCanvas: {fileID: 0}
-  detectionRadius: 20
 --- !u!114 &5823237687294320496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +184,8 @@ MonoBehaviour:
   objectToDeactivate: {fileID: 8724239487478467396}
   generatorActivateSound: {fileID: 3869939215131756046}
   progressSpeed: 0.5
+  interactionCanvas: {fileID: 0}
+  progressBarCanvas: {fileID: 0}
 --- !u!1 &325989276931608410
 GameObject:
   m_ObjectHideFlags: 0
